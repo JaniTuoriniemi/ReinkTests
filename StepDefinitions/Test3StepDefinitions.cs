@@ -3,14 +3,14 @@ using CalculatorSelenium.Specs.Drivers;
 using CalculatorSelenium.Specs.PageObjects;
 
 using System;
-
+using System.Reflection.Metadata.Ecma335;
 using TechTalk.SpecFlow;
 
 using static System.Net.WebRequestMethods;
 
-namespace SpecFlowProject1.StepDefinitions
+namespace SpecFlowProject1.StepDefinitions { 
 
-{
+
 
     [Binding]
 
@@ -25,8 +25,8 @@ namespace SpecFlowProject1.StepDefinitions
 
         public string phonenumber;
 
-        // These are the parameters to be filled into the hidden test form
-
+            // These are the parameters to be filled into the hidden test form
+            public string phone;
         public string amount;
 
         public string bookID;
@@ -41,15 +41,16 @@ namespace SpecFlowProject1.StepDefinitions
 
         public CalculatorPageObject _calculatorPageObject;
         public Test3StepDefinitions(BrowserDriverEdge browserDriverEdge)
-       // public Test3StepDefinitions(BrowserDriver browserDriver)
+        // public Test3StepDefinitions(BrowserDriver browserDriver)
         //public Test3StepDefinitions(BrowserDriverMozilla browserDriverMozilla)
         {
 
-           // _calculatorPageObject = new CalculatorPageObject(browserDriver.Current);
+            // _calculatorPageObject = new CalculatorPageObject(browserDriver.Current);
             /// _calculatorPageObject = new CalculatorPageObject(browserDriverMozilla.Current);
             _calculatorPageObject = new CalculatorPageObject(browserDriverEdge.Current);
             //browsertype = "chrome";
             browsertype = "mozilla";
+                
             password = "Koopa11Kiipa";//User password
             phonenumber = "730622401";//User phone
             bookQRcode = "eebe74a8-56ce-4e10-a8a2-6e4f6ef6c8cd";
@@ -160,7 +161,7 @@ namespace SpecFlowProject1.StepDefinitions
         public void GivenTheBrowserIsOnThePaymentPage_()
 
         {
-              string start = _calculatorPageObject.GiveStart();
+            string start = _calculatorPageObject.GiveStart();
             if (_calculatorPageObject.CurrentURL() != $"{start}/account/payment-swish?BookId=" + bookID)
 
             {
@@ -205,7 +206,7 @@ namespace SpecFlowProject1.StepDefinitions
 
             //The phone number is filled in (Altough is hould already be autofilled) an the "Betala" is clicked.
             if (browsertype == "mozilla")
-            { _calculatorPageObject.StateSwishnumber("46"+phonenumber); }
+            { _calculatorPageObject.StateSwishnumber("46" + phonenumber); }
             else { _calculatorPageObject.StateSwishnumber("+46" + phonenumber); }
 
             _calculatorPageObject.ClickBetalaSwish();

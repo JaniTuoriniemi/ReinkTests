@@ -13,6 +13,7 @@ namespace SpecFlowProject1.StepDefinitions
     [Binding]
     public class Test1_SammanslagenStepDefinitions
     {
+        public string phone;
         public string startPage;
         public string password;
         public string phonenumber;
@@ -31,6 +32,7 @@ namespace SpecFlowProject1.StepDefinitions
             phonenumber = "735458020";//User phone
             bookQRcode = "eebe74a8-56ce-4e10-a8a2-6e4f6ef6c8cd";
             bookID = "6c6d0395-c667-4bf9-b5f5-0d13ca706b27"; //The book QR code number
+            phone = parameters.GivePhone();
         }
 
         [Given(@"Account is created")]
