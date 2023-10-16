@@ -9,8 +9,7 @@ using System;
 using TechTalk.SpecFlow;
 
 using Newtonsoft.Json;
-
-
+using OpenQA.Selenium;
 
 namespace SpecFlowProject1.StepDefinitions
 
@@ -21,6 +20,9 @@ namespace SpecFlowProject1.StepDefinitions
     public class SwishtestStepDefinitions
 
     {
+        public bool isParameters;
+        public string JsonParameters;
+        public string JsonReserveParameters;
         public string browsertype;
         public string filledSwishPaymentReference;
 
@@ -50,6 +52,107 @@ namespace SpecFlowProject1.StepDefinitions
         //{
         //SwishtestStepDefinitions(BrowserDriverMozilla browserDriverMozilla)
         {
+            isParameters = false;
+            JsonParameters = "";
+            try
+            {
+                JsonParameters= File.ReadAllText(Path.GetTempPath() + "JsonParameters1.txt");
+                isParameters=true;
+            }
+            catch { 
+                 JsonParameters = File.ReadAllText(Appsettings + "JsonParameters1.txt"); 
+                }
+
+             dynamic jsonParameters = JsonConvert.DeserializeObject(JsonParameters); 
+            JsonReserveParameters = File.ReadAllText("JsonParameters1.txt");
+            dynamic jsonReserveParameters = JsonConvert.DeserializeObject(JsonParameters);
+
+           
+            if (isParameters == true)
+            { if ((jsonParameters.browsertype != "") && (jsonParameters.browsertype != null))
+                { browsertype = jsonParameters.browsertype; }
+              else if (jsonReserveParameters.browsertype!=null) { browsertype = jsonReserveParameters.browsertype; }
+            }
+            else { browsertype = jsonReserveParameters.browsertype; }
+
+            
+            if (isParameters == true)
+            {
+                if ((jsonParameters.ExistingPassword != "") && (jsonParameters.ExistingPassword != null))
+                { password = jsonParameters.ExistingPassword; }
+                else if (jsonReserveParameters.ExistingPassword != null) { browsertype = jsonReserveParameters.ExistingPassword; }
+            }
+            else { password = jsonReserveParameters.ExistingPassword; }
+
+            
+            if (isParameters == true)
+            {
+                if ((jsonParameters.ExistingPhone != "") && (jsonParameters.ExistingPhone != null))
+                { phonenumber = jsonParameters.ExistingPhone; }
+                else if (jsonReserveParameters.ExistingPhone != null) { phonenumber = jsonReserveParameters.ExistingPhone; }
+            }
+            else { phonenumber = jsonReserveParameters.ExistingPhone; }
+
+           
+            if (isParameters == true)
+            {
+                if ((jsonParameters.Amount != "") && (jsonParameters.Amount != null))
+                { amount = jsonParameters.Amount; }
+                else if (jsonReserveParameters.Amount != null) { amount= jsonReserveParameters.Amount; }
+            }
+            else { amount = jsonReserveParameters.Amount; }
+
+            if (isParameters == true)
+            {
+                if ((jsonParameters.BookID != "") && (jsonParameters.BookID != null))
+                { bookID = jsonParameters.BookID; }
+                else if (jsonReserveParameters.BookID != null) { bookID = jsonReserveParameters.BookID; }
+            }
+            else { bookID = jsonReserveParameters.BookID; }
+
+            if (isParameters == true)
+            {
+                if ((jsonParameters.BookQRcode != "") && (jsonParameters.BookQRcode != null))
+                { bookQRcode = jsonParameters.BookQRcode; }
+                else if (jsonReserveParameters.BookQRcode != null) { browsertype = jsonReserveParameters.BookQRcode; }
+            }
+            else { bookQRcode = jsonReserveParameters.BookQRcode; }
+          
+            if (isParameters == true)
+            {
+                if ((jsonParameters.AveragePrice != "") && (jsonParameters.AveragePrice != null))
+                { averagePrice = jsonParameters.AveragePrice; }
+                else if (jsonReserveParameters.AveragePrice != null) { averagePrice = jsonReserveParameters.Amount; }
+            }
+            else { averagePrice = jsonReserveParameters.AveragePrice; }
+
+            if (isParameters == true)
+            {
+                if ((jsonParameters.AveragePricePlusExtra != "") && (jsonParameters.AveragePricePlusExtra != null))
+                { averagePricePlusExtra = jsonParameters.AveragePricePlusExtra; }
+                else if (jsonReserveParameters.AveragePricePlusExtra != null) { averagePricePlusExtra = jsonReserveParameters.AveragePricePlusExtra; }
+            }
+            else { averagePricePlusExtra = jsonReserveParameters.AveragePricePlusExtra; }
+
+            if (isParameters == true)
+            {
+                if ((jsonParameters.PaymentReference != "") && (jsonParameters.PaymentReference != null))
+                { paymentReference = jsonParameters.PaymentReference; }
+                else if (jsonReserveParameters.PaymentReference != null) { paymentReference = jsonReserveParameters.PaymentReference; }
+            }
+            else { paymentReference = jsonReserveParameters.PaymentReference; }
+
+            if (isParameters == true)
+            {
+                if ((jsonParameters.FilledSwishPaymentReference != "") && (jsonParameters.FilledSwishPaymentReference != null))
+                { filledSwishPaymentReference = jsonParameters.FilledSwishPaymentReference; }
+                else if (jsonReserveParameters.FilledSwishPaymentReference != null) { filledSwishPaymentReference = jsonReserveParameters.FilledSwishPaymentReference; }
+            }
+            else { filledSwishPaymentReference = jsonReserveParameters.FilledSwishPaymentReference; }
+
+
+
+
             _calculatorPageObject = new CalculatorPageObject(browserDriverEdge.Current);
                // _calculatorPageObject = new CalculatorPageObject(browserDriver.Current);
                // _calculatorPageObject = new CalculatorPageObject(browserDriverMozilla.Current);

@@ -10,19 +10,19 @@ namespace SpecFlowProject1.StepDefinitions
     public class Parameters
     {
         // Display the number of command line arguments.
-       public  string ExistingPhone;
-        public string NewPhone;
-        public string ExistingPassword;
-        public string NewPassword;
-        public string BookID;
-        public string BookQRcode;
-        public string ReservedBookID;
-        public string AveragePrice;
-        public string AveragePricePlusExtra;
-        public string PaymentReference;
-        public string Amount;
-        public string Browsertype;
-        public string FilledSwishPaymentReference;
+       public  string ExistingPhone { get; set; }
+        public string NewPhone { get; set; }
+        public string ExistingPassword { get; set; }
+        public string NewPassword { get; set; }
+        public string BookID { get; set; }
+        public string BookQRcode { get; set; }
+        public string ReservedBookID { get; set; }
+        public string AveragePrice { get; set; }
+        public string AveragePricePlusExtra { get; set; }
+        public string PaymentReference { get; set; }
+        public string Amount { get; set; }
+        public string Browsertype { get; set; }
+        public string FilledSwishPaymentReference { get; set; }
     }
     internal class Data {    
         static int Main()
@@ -51,11 +51,18 @@ namespace SpecFlowProject1.StepDefinitions
             parameters.FilledSwishPaymentReference = Console.ReadLine();
 
             string jsonParameters = JsonSerializer.Serialize(parameters);
-            File.WriteAllText(fileName, jsonParameters);
+            //Environment.SetEnvironmentVariable("jsonParameters",jsonParameters );
+            //string jsonParameters_ = Environment.GetEnvironmentVariable("jsonParameters");
+           // Console.WriteLine(jsonParameters_);
+           // string path = Path.Combine(,  "JsonParameters1.txt");
+            File.WriteAllText(Path.GetTempPath()+"JsonParameters1.txt", jsonParameters);
+            
+            Console.WriteLine(File.ReadAllText(Path.GetTempPath()+"JsonParameters1.txt"));
             List<string> data = new List<string>();
             int a = Environment.ExitCode;
             int value = 99;
-            return(value);
+            Console.WriteLine(a.ToString());
+            return (a);
         }
         
     }
