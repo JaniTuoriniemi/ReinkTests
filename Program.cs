@@ -41,6 +41,10 @@ namespace SpecFlowProject1.StepDefinitions
             parameters.BookQRcode = Console.ReadLine();
             Console.WriteLine("State the Book ID of a book the is always reserved");
             parameters.ReservedBookID = Console.ReadLine();
+
+            Console.WriteLine("Choose browsertype: Type edge,mozilla or chrome ");
+            parameters.Browsertype = Console.ReadLine();
+
             Console.WriteLine("State the parameter ''Average price''to be filled into to the hidden in swishtests");
             parameters.AveragePrice = Console.ReadLine();
             Console.WriteLine("State the parameter ''AveragePricePlusExtra''to be filled into to the hidden in swishtests");

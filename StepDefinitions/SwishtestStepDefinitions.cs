@@ -23,7 +23,6 @@ namespace SpecFlowProject1.StepDefinitions
     {
         public bool isParameters;
         public string JsonParameters;
-        public string JsonReserveParameters;
         public string browsertype;
         public string filledSwishPaymentReference;
         public string password;
@@ -61,84 +60,84 @@ namespace SpecFlowProject1.StepDefinitions
             DefaultParameters defaultParameters = new DefaultParameters();
            
             if (isParameters == true)
-            { if ((jsonParameters.browsertype != "") && (jsonParameters.browsertype != null))
-                { browsertype = jsonParameters.browsertype; }
-              else if (defaultParameters.browsertype!=null) { browsertype = defaultParameters.browsertype; }
+            { if ((jsonParameters.Browsertype != "") && (jsonParameters.Browsertype != null))
+                { browsertype = jsonParameters.Browsertype; }
+              else if (defaultParameters.Browsertype!=null) { browsertype = defaultParameters.Browsertype; }
             }
-            else { browsertype = defaultParameters.browsertype; }
-  
+            else { browsertype = defaultParameters.Browsertype; }
+             // Only password for an existing account is used for these tests
             if (isParameters == true)
             {
                 if ((jsonParameters.ExistingPassword != "") && (jsonParameters.ExistingPassword != null))
                 { password = jsonParameters.ExistingPassword; }
-                else if (defaultParameters.existingpassword != null) { browsertype = defaultParameters.existingpassword; }
+                else if (defaultParameters.Existingpassword != null) { password = defaultParameters.Existingpassword; }
             }
-            else { password = defaultParameters.existingpassword; }
-
+            else { password = defaultParameters.Existingpassword; }
+            // Only phonenumber for an existing account is used for these tests
             if (isParameters == true)
             {
                 if ((jsonParameters.ExistingPhone != "") && (jsonParameters.ExistingPhone != null))
                 { phonenumber = jsonParameters.ExistingPhone; }
-                else if (defaultParameters.existingphone != null) { phonenumber = defaultParameters.existingphone; }
+                else if (defaultParameters.Existingphone != null) { phonenumber = defaultParameters.Existingphone; }
             }
-            else { phonenumber = defaultParameters.existingphone; }
+            else { phonenumber = defaultParameters.Existingphone; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.Amount != "") && (jsonParameters.Amount != null))
                 { amount = jsonParameters.Amount; }
-                else if (defaultParameters.amount != null) { amount= defaultParameters.amount; }
+                else if (defaultParameters.Amount != null) { amount= defaultParameters.Amount; }
             }
-            else { amount = defaultParameters.amount; }
+            else { amount = defaultParameters.Amount; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.BookID != "") && (jsonParameters.BookID != null))
                 { bookID = jsonParameters.BookID; }
-                else if (defaultParameters.bookID != null) { bookID = defaultParameters.bookID; }
+                else if (defaultParameters.BookID != null) { bookID = defaultParameters.BookID; }
             }
-            else { bookID = defaultParameters.bookID; }
+            else { bookID = defaultParameters.BookID; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.BookQRcode != "") && (jsonParameters.BookQRcode != null))
                 { bookQRcode = jsonParameters.BookQRcode; }
-                else if (defaultParameters.bookQRcode != null) { browsertype = defaultParameters.bookQRcode; }
+                else if (defaultParameters.BookQRcode != null) { bookQRcode = defaultParameters.BookQRcode; }
             }
-            else { bookQRcode = defaultParameters.bookQRcode; }
+            else { bookQRcode = defaultParameters.BookQRcode; }
           
             if (isParameters == true)
             {
                 if ((jsonParameters.AveragePrice != "") && (jsonParameters.AveragePrice != null))
                 { averagePrice = jsonParameters.AveragePrice; }
-                else if (defaultParameters.averagePrice != null) { averagePrice = defaultParameters.amount; }
+                else if (defaultParameters.AveragePrice != null) { averagePrice = defaultParameters.AveragePrice; }
             }
-            else { averagePrice = defaultParameters.averagePrice; }
+            else { averagePrice = defaultParameters.AveragePrice; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.AveragePricePlusExtra != "") && (jsonParameters.AveragePricePlusExtra != null))
                 { averagePricePlusExtra = jsonParameters.AveragePricePlusExtra; }
-                else if (defaultParameters.averagePricePlusExtra != null) { averagePricePlusExtra = defaultParameters.averagePricePlusExtra; }
+                else if (defaultParameters.AveragePricePlusExtra != null) { averagePricePlusExtra = defaultParameters.AveragePricePlusExtra; }
             }
-            else { averagePricePlusExtra = defaultParameters.averagePricePlusExtra; }
+            else { averagePricePlusExtra = defaultParameters.AveragePricePlusExtra; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.PaymentReference != "") && (jsonParameters.PaymentReference != null))
                 { paymentReference = jsonParameters.PaymentReference; }
-                else if (defaultParameters.paymentReference != null) { paymentReference = defaultParameters.paymentReference; }
+                else if (defaultParameters.PaymentReference != null) { paymentReference = defaultParameters.PaymentReference; }
             }
-            else { paymentReference = defaultParameters.paymentReference; }
+            else { paymentReference = defaultParameters.PaymentReference; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.FilledSwishPaymentReference != "") && (jsonParameters.FilledSwishPaymentReference != null))
                 { filledSwishPaymentReference = jsonParameters.FilledSwishPaymentReference; }
-                else if (defaultParameters.filledSwishPaymentReference != null) { filledSwishPaymentReference = defaultParameters.filledSwishPaymentReference; }
+                else if (defaultParameters.FilledSwishPaymentReference != null) { filledSwishPaymentReference = defaultParameters.FilledSwishPaymentReference; }
             }
-            else { filledSwishPaymentReference = defaultParameters.filledSwishPaymentReference; }
-            browsertype = "chromgge";
+            else { filledSwishPaymentReference = defaultParameters.FilledSwishPaymentReference; }
+           
             if (browsertype == "edge")
             {
                 browserDriverEdge = new BrowserDriverEdge();
