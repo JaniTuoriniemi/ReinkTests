@@ -10,6 +10,7 @@ using TechTalk.SpecFlow;
 
 using Newtonsoft.Json;
 using OpenQA.Selenium;
+using Specflowtest.StepDefinitions;
 
 namespace SpecFlowProject1.StepDefinitions
 
@@ -25,157 +26,156 @@ namespace SpecFlowProject1.StepDefinitions
         public string JsonReserveParameters;
         public string browsertype;
         public string filledSwishPaymentReference;
-
         public string password;
-
         public string phonenumber;
 
         // These are the parameters to be filled into the hidden test form
 
         public string amount;
-
         public string bookID;
-
         public string averagePrice;
-
         public string averagePricePlusExtra;
-
         public string paymentReference;
-
         public string bookQRcode;
 
         // The PageObject that inteacts with the webpages. It is located in testPageObject.cs
 
+        BrowserDriverEdge browserDriverEdge;
+        BrowserDriver browserDriver;
+        BrowserDriverMozilla browserDriverMozilla;
         public CalculatorPageObject _calculatorPageObject;
-        SwishtestStepDefinitions(BrowserDriverEdge browserDriverEdge)
-        //public SwishtestStepDefinitions(BrowserDriver browserDriver)
-        //{
-        //SwishtestStepDefinitions(BrowserDriverMozilla browserDriverMozilla)
+        SwishtestStepDefinitions()
+       
         {
             isParameters = false;
             JsonParameters = "";
             try
-            {
-                JsonParameters= File.ReadAllText(Path.GetTempPath() + "JsonParameters1.txt");
-                isParameters=true;
+            {//Comment away the two lines below if you want to run with default parameters 
+             JsonParameters= File.ReadAllText(Path.GetTempPath() + "JsonParameters1.txt");
+             if (JsonParameters != "") { isParameters = true; }
             }
             catch { 
-                 JsonParameters = File.ReadAllText(Appsettings + "JsonParameters1.txt"); 
+                 
                 }
-
-             dynamic jsonParameters = JsonConvert.DeserializeObject(JsonParameters); 
-            JsonReserveParameters = File.ReadAllText("JsonParameters1.txt");
-            dynamic jsonReserveParameters = JsonConvert.DeserializeObject(JsonParameters);
-
+             dynamic jsonParameters = JsonConvert.DeserializeObject(JsonParameters);  
+            DefaultParameters defaultParameters = new DefaultParameters();
            
             if (isParameters == true)
             { if ((jsonParameters.browsertype != "") && (jsonParameters.browsertype != null))
                 { browsertype = jsonParameters.browsertype; }
-              else if (jsonReserveParameters.browsertype!=null) { browsertype = jsonReserveParameters.browsertype; }
+              else if (defaultParameters.browsertype!=null) { browsertype = defaultParameters.browsertype; }
             }
-            else { browsertype = jsonReserveParameters.browsertype; }
-
-            
+            else { browsertype = defaultParameters.browsertype; }
+  
             if (isParameters == true)
             {
                 if ((jsonParameters.ExistingPassword != "") && (jsonParameters.ExistingPassword != null))
                 { password = jsonParameters.ExistingPassword; }
-                else if (jsonReserveParameters.ExistingPassword != null) { browsertype = jsonReserveParameters.ExistingPassword; }
+                else if (defaultParameters.existingpassword != null) { browsertype = defaultParameters.existingpassword; }
             }
-            else { password = jsonReserveParameters.ExistingPassword; }
+            else { password = defaultParameters.existingpassword; }
 
-            
             if (isParameters == true)
             {
                 if ((jsonParameters.ExistingPhone != "") && (jsonParameters.ExistingPhone != null))
                 { phonenumber = jsonParameters.ExistingPhone; }
-                else if (jsonReserveParameters.ExistingPhone != null) { phonenumber = jsonReserveParameters.ExistingPhone; }
+                else if (defaultParameters.existingphone != null) { phonenumber = defaultParameters.existingphone; }
             }
-            else { phonenumber = jsonReserveParameters.ExistingPhone; }
+            else { phonenumber = defaultParameters.existingphone; }
 
-           
             if (isParameters == true)
             {
                 if ((jsonParameters.Amount != "") && (jsonParameters.Amount != null))
                 { amount = jsonParameters.Amount; }
-                else if (jsonReserveParameters.Amount != null) { amount= jsonReserveParameters.Amount; }
+                else if (defaultParameters.amount != null) { amount= defaultParameters.amount; }
             }
-            else { amount = jsonReserveParameters.Amount; }
+            else { amount = defaultParameters.amount; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.BookID != "") && (jsonParameters.BookID != null))
                 { bookID = jsonParameters.BookID; }
-                else if (jsonReserveParameters.BookID != null) { bookID = jsonReserveParameters.BookID; }
+                else if (defaultParameters.bookID != null) { bookID = defaultParameters.bookID; }
             }
-            else { bookID = jsonReserveParameters.BookID; }
+            else { bookID = defaultParameters.bookID; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.BookQRcode != "") && (jsonParameters.BookQRcode != null))
                 { bookQRcode = jsonParameters.BookQRcode; }
-                else if (jsonReserveParameters.BookQRcode != null) { browsertype = jsonReserveParameters.BookQRcode; }
+                else if (defaultParameters.bookQRcode != null) { browsertype = defaultParameters.bookQRcode; }
             }
-            else { bookQRcode = jsonReserveParameters.BookQRcode; }
+            else { bookQRcode = defaultParameters.bookQRcode; }
           
             if (isParameters == true)
             {
                 if ((jsonParameters.AveragePrice != "") && (jsonParameters.AveragePrice != null))
                 { averagePrice = jsonParameters.AveragePrice; }
-                else if (jsonReserveParameters.AveragePrice != null) { averagePrice = jsonReserveParameters.Amount; }
+                else if (defaultParameters.averagePrice != null) { averagePrice = defaultParameters.amount; }
             }
-            else { averagePrice = jsonReserveParameters.AveragePrice; }
+            else { averagePrice = defaultParameters.averagePrice; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.AveragePricePlusExtra != "") && (jsonParameters.AveragePricePlusExtra != null))
                 { averagePricePlusExtra = jsonParameters.AveragePricePlusExtra; }
-                else if (jsonReserveParameters.AveragePricePlusExtra != null) { averagePricePlusExtra = jsonReserveParameters.AveragePricePlusExtra; }
+                else if (defaultParameters.averagePricePlusExtra != null) { averagePricePlusExtra = defaultParameters.averagePricePlusExtra; }
             }
-            else { averagePricePlusExtra = jsonReserveParameters.AveragePricePlusExtra; }
+            else { averagePricePlusExtra = defaultParameters.averagePricePlusExtra; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.PaymentReference != "") && (jsonParameters.PaymentReference != null))
                 { paymentReference = jsonParameters.PaymentReference; }
-                else if (jsonReserveParameters.PaymentReference != null) { paymentReference = jsonReserveParameters.PaymentReference; }
+                else if (defaultParameters.paymentReference != null) { paymentReference = defaultParameters.paymentReference; }
             }
-            else { paymentReference = jsonReserveParameters.PaymentReference; }
+            else { paymentReference = defaultParameters.paymentReference; }
 
             if (isParameters == true)
             {
                 if ((jsonParameters.FilledSwishPaymentReference != "") && (jsonParameters.FilledSwishPaymentReference != null))
                 { filledSwishPaymentReference = jsonParameters.FilledSwishPaymentReference; }
-                else if (jsonReserveParameters.FilledSwishPaymentReference != null) { filledSwishPaymentReference = jsonReserveParameters.FilledSwishPaymentReference; }
+                else if (defaultParameters.filledSwishPaymentReference != null) { filledSwishPaymentReference = defaultParameters.filledSwishPaymentReference; }
             }
-            else { filledSwishPaymentReference = jsonReserveParameters.FilledSwishPaymentReference; }
+            else { filledSwishPaymentReference = defaultParameters.filledSwishPaymentReference; }
+            browsertype = "chromgge";
+            if (browsertype == "edge")
+            {
+                browserDriverEdge = new BrowserDriverEdge();
+                _calculatorPageObject = new CalculatorPageObject(browserDriverEdge.Current);
+            }
+            if (browsertype == "mozilla")
+            {
+                browserDriverMozilla = new BrowserDriverMozilla();
+                _calculatorPageObject = new CalculatorPageObject(browserDriverMozilla.Current);
+            }
+            if (browsertype == "chrome")
+            {  browserDriver = new BrowserDriver(); 
+               _calculatorPageObject = new CalculatorPageObject(browserDriver.Current);}
 
 
+                // _calculatorPageObject = new CalculatorPageObject(browserDriver.Current);
+                // _calculatorPageObject = new CalculatorPageObject(browserDriverMozilla.Current);
+                // browsertype = "mozilla";
+                //browsertype = "chrome";
+                // The tester should modify the parameters below to suit the test.
 
+                // password = "Koopa11Kiipa";//User password
+                // phonenumber = "730622401";//User phone
+                //bookQRcode = "eebe74a8-56ce-4e10-a8a2-6e4f6ef6c8cd";
+                //amount = "1";
+                //bookID = "6c6d0395-c667-4bf9-b5f5-0d13ca706b27"; //The book QR code number  
+                //averagePrice = "1";
 
-            _calculatorPageObject = new CalculatorPageObject(browserDriverEdge.Current);
-               // _calculatorPageObject = new CalculatorPageObject(browserDriver.Current);
-               // _calculatorPageObject = new CalculatorPageObject(browserDriverMozilla.Current);
-            browsertype = "mozilla";
-            //browsertype = "chrome";
-            // The tester should modify the parameters below to suit the test.
+                // averagePricePlusExtra = "1";
 
-            password = "Koopa11Kiipa";//User password
-            phonenumber = "730622401";//User phone
-            bookQRcode = "eebe74a8-56ce-4e10-a8a2-6e4f6ef6c8cd";
-            amount = "1";
-            bookID = "6c6d0395-c667-4bf9-b5f5-0d13ca706b27"; //The book QR code number  
-            averagePrice = "1";
+                //            paymentReference = "3AF9E317B9E54B5ABF481F85E8A96D45";//Probably should be the user GUID?
 
-            averagePricePlusExtra = "1";
+                //  filledSwishPaymentReference = "";
 
-            paymentReference = "3AF9E317B9E54B5ABF481F85E8A96D45";//Probably should be the user GUID?
+            }
 
-            filledSwishPaymentReference = "";
-
-        }
-
-        [Given(@"The browser goes to the the payment page")]
+            [Given(@"The browser goes to the the payment page")]
 
         public void GivenTheBrowserIsOnThePaymentPage()
 
