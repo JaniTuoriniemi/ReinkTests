@@ -24,13 +24,11 @@ namespace SpecFlowProject1.StepDefinitions
         public string startPage;
         public string bookID;
         public string bookQRcode;
-
         BrowserDriverEdge browserDriverEdge;
         BrowserDriver browserDriver;
         BrowserDriverMozilla browserDriverMozilla;
         public CalculatorPageObject _calculatorPageObject;
         Test1_SammanslagenStepDefinitions()
-
         {
             isParameters = false;
             JsonParameters = "";
@@ -85,8 +83,6 @@ namespace SpecFlowProject1.StepDefinitions
                 else if (defaultParameters.BookQRcode != null) { bookQRcode = defaultParameters.BookQRcode; }
             }
             else { bookQRcode = defaultParameters.BookQRcode; }
-
-
             if (browsertype == "edge")
             {
                 browserDriverEdge = new BrowserDriverEdge();
@@ -105,9 +101,6 @@ namespace SpecFlowProject1.StepDefinitions
             startPage = _calculatorPageObject.GiveStart();
         }
        
-            
-        
-
         [Given(@"Account is created")]
         public void GivenAccountIsCreated()
         {
