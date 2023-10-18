@@ -27,6 +27,7 @@ namespace SpecFlowProject1.StepDefinitions
         BrowserDriverEdge browserDriverEdge;
         BrowserDriver browserDriver;
         BrowserDriverMozilla browserDriverMozilla;
+        // The PageObject that inteacts with the webpages. It is located in testPageObject.cs
         public CalculatorPageObject _calculatorPageObject;
         Test1_SammanslagenStepDefinitions()
         {
@@ -42,6 +43,7 @@ namespace SpecFlowProject1.StepDefinitions
 
             }
             dynamic jsonParameters = JsonConvert.DeserializeObject(JsonParameters);
+            ////The tests are run with default parameters if custom parameters are not found.
             DefaultParameters defaultParameters = new DefaultParameters();
 
             if (isParameters == true)

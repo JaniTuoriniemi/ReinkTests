@@ -21,7 +21,7 @@ namespace CalculatorSelenium.Specs.PageObjects
 
     /// <summary>
 
-    /// Calculator Page Object
+    /// The page object interacting with the webbpages
 
     /// </summary>
 

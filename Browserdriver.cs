@@ -10,7 +10,7 @@ namespace CalculatorSelenium.Specs.Drivers
     /// <summary>
     /// Manages a browser instance using Selenium
     /// </summary>
-    public class BrowserDriver : IDisposable// Comment away IDisposable to not close browser after test
+    public class BrowserDriver : IDisposable// Comment away IDisposable in order to not close browser after test.
     {
         private readonly Lazy<IWebDriver> _currentWebDriverLazy;
         private bool _isDisposed;
@@ -59,8 +59,8 @@ namespace CalculatorSelenium.Specs.Drivers
             _isDisposed = true;
         }
     }
-        public class BrowserDriverMozilla : IDisposable// Comment away IDisposable to not close browser after test
-        {
+        public class BrowserDriverMozilla : IDisposable// Comment away IDisposable in order to not close browser after test
+    {
             private readonly Lazy<IWebDriver> _currentWebDriverLazy;
             private bool _isDisposed;
 
@@ -108,7 +108,7 @@ namespace CalculatorSelenium.Specs.Drivers
                 _isDisposed = true;
             }
         }
-    public class BrowserDriverEdge// : IDisposable// Comment away IDisposable to not close browser after test
+    public class BrowserDriverEdge// : IDisposable// Comment away IDisposable in order to not close browser after test
     {
         private readonly Lazy<IWebDriver> _currentWebDriverLazy;
         private bool _isDisposed;

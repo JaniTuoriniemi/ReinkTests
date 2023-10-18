@@ -18,12 +18,14 @@ namespace Specflowtest.StepDefinitions
         public string ReservedBookID;
         public string Amount;
         public string BookID;
+        public string BookQRcode;
+        public string ReservedbookQRcode;
+
         // These are the parameters to be filled into the hidden test form
         public string AveragePrice;
         public string AveragePricePlusExtra;
         public string PaymentReference;
-        public string BookQRcode;
-        public string ReservedbookQRcode;
+        
         public string RandomPhone()
         {
             string phone = "";
@@ -40,7 +42,7 @@ namespace Specflowtest.StepDefinitions
           Existingpassword="Koopa11Kiipa";
           Existingphone="730622401";
           NewPassword="NewPassword111";
-          NewPhone = "73"+RandomPhone();
+          NewPhone = "73"+RandomPhone();//Generates a random phone number that is unlikely to be in use.
           BookID = "6c6d0395-c667-4bf9-b5f5-0d13ca706b27";
           ReservedBookID = "033b655c-33cf-4175-b3f0-08db638c642c";
           Amount="1";

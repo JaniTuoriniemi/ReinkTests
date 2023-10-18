@@ -18,20 +18,20 @@ namespace SpecFlowProject1.StepDefinitions
         public string password;
         public string phonenumber;
         public string startPage;
+        public string bookID;
+        public string bookQRcode;
         // These are the parameters to be filled into the hidden test form
 
         public string amount;
-        public string bookID;
         public string averagePrice;
         public string averagePricePlusExtra;
         public string paymentReference;
-        public string bookQRcode;
-
-        // The PageObject that inteacts with the webpages. It is located in testPageObject.cs
+       
 
         BrowserDriverEdge browserDriverEdge;
         BrowserDriver browserDriver;
         BrowserDriverMozilla browserDriverMozilla;
+        // The PageObject that inteacts with the webpages. It is located in testPageObject.cs
         public CalculatorPageObject _calculatorPageObject;
         Test4StepDefinitions()
         {
@@ -47,6 +47,7 @@ namespace SpecFlowProject1.StepDefinitions
 
             }
             dynamic jsonParameters = JsonConvert.DeserializeObject(JsonParameters);
+            ////The tests are run with default parameters if custom parameters are not found.
             DefaultParameters defaultParameters = new DefaultParameters();
 
             if (isParameters == true)

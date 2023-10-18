@@ -27,21 +27,18 @@ namespace SpecFlowProject1.StepDefinitions
         public string filledSwishPaymentReference;
         public string password;
         public string phonenumber;
-
-        // These are the parameters to be filled into the hidden test form
-
-        public string amount;
         public string bookID;
+        public string bookQRcode;
+        // These are the parameters to be filled into the hidden test form
+        public string amount;
         public string averagePrice;
         public string averagePricePlusExtra;
         public string paymentReference;
-        public string bookQRcode;
-
-        // The PageObject that inteacts with the webpages. It is located in testPageObject.cs
-
+        
         BrowserDriverEdge browserDriverEdge;
         BrowserDriver browserDriver;
         BrowserDriverMozilla browserDriverMozilla;
+        // The PageObject that inteacts with the webpages. It is located in testPageObject.cs
         public CalculatorPageObject _calculatorPageObject;
         SwishtestStepDefinitions()
        
@@ -57,6 +54,7 @@ namespace SpecFlowProject1.StepDefinitions
                  
                 }
              dynamic jsonParameters = JsonConvert.DeserializeObject(JsonParameters);  
+            //The tests are run with default parameters if custom parameters are not found.
             DefaultParameters defaultParameters = new DefaultParameters();
            
             if (isParameters == true)
@@ -151,26 +149,6 @@ namespace SpecFlowProject1.StepDefinitions
             if (browsertype == "chrome")
             {  browserDriver = new BrowserDriver(); 
                _calculatorPageObject = new CalculatorPageObject(browserDriver.Current);}
-
-
-                // _calculatorPageObject = new CalculatorPageObject(browserDriver.Current);
-                // _calculatorPageObject = new CalculatorPageObject(browserDriverMozilla.Current);
-                // browsertype = "mozilla";
-                //browsertype = "chrome";
-                // The tester should modify the parameters below to suit the test.
-
-                // password = "Koopa11Kiipa";//User password
-                // phonenumber = "730622401";//User phone
-                //bookQRcode = "eebe74a8-56ce-4e10-a8a2-6e4f6ef6c8cd";
-                //amount = "1";
-                //bookID = "6c6d0395-c667-4bf9-b5f5-0d13ca706b27"; //The book QR code number  
-                //averagePrice = "1";
-
-                // averagePricePlusExtra = "1";
-
-                //            paymentReference = "3AF9E317B9E54B5ABF481F85E8A96D45";//Probably should be the user GUID?
-
-                //  filledSwishPaymentReference = "";
 
             }
 
