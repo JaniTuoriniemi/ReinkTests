@@ -185,6 +185,7 @@ namespace SpecFlowProject1.StepDefinitions
             _calculatorPageObject.StateSwishAmount(amount);
 
             _calculatorPageObject.StateSwishBookID(bookID);
+            //Uncomment the lines below to set additional parameters;
 
             //_calculatorPageObject.StateSwishAveragePrice(averagePrice);
 
@@ -198,7 +199,7 @@ namespace SpecFlowProject1.StepDefinitions
 
             // filledSwishPaymentReference= _calculatorPageObject.GetValueSwishPaymentReference();
 
-            //The phone number is filled in (Altough is hould already be autofilled) an the "Betala" is clicked.
+            //The phone number is filled in (Altough is should already be autofilled) and the "Betala" is clicked.
 
             if (browsertype == "mozilla")
             { _calculatorPageObject.StateSwishnumber("46" + phonenumber); }
@@ -227,8 +228,9 @@ namespace SpecFlowProject1.StepDefinitions
             string testticket = _calculatorPageObject.GetValueSwishTestTicket();
 
             _calculatorPageObject.StateSwishTestAmount(amount);
-
-            _calculatorPageObject.ClickAvslutaButton();
+            _calculatorPageObject.StateSwishTestCode();
+            _calculatorPageObject.SubmitHiddenForm();
+           // _calculatorPageObject.ClickAvslutaButton();
 
             string pagesource = _calculatorPageObject.GetSource();
 
@@ -256,39 +258,6 @@ namespace SpecFlowProject1.StepDefinitions
 
             actualResult.Should().Be(2);
 
-
-
-            //{ controlnumber=controlnumber+1; }
-
-            //int controlnumber = 0;
-
-            //if (testamount == "4")
-
-            //{ controlnumber=controlnumber+1; }
-
-            // if (teststatus == "PAID")
-
-            //{ controlnumber = controlnumber + 1; }
-
-            //if (testcode == "enter code")
-
-            // { controlnumber = controlnumber + 1; }
-
-            //if (testticket == filledSwishPaymentReference.ToLower() )
-
-            //{ controlnumber = controlnumber + 1; }
-
-            //int actualResult = controlnumber;
-
-            //actualResult.Should().Be(4);//If the hidden test form is filled in as expected the control sum should be 4.
-
-            //  "203e782c967d4350a21a4d3e5538e469"
-
-            // "3af9e317b9e54b5abf481f85e8a96d45"
-
-            //457643B8C6E044049B4C73F3CA303F68
-
-            // 457643b8c6e044049b4c73f3ca303f68
 
         }
 

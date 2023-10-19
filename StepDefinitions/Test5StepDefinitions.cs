@@ -61,10 +61,12 @@ namespace SpecFlowProject1.StepDefinitions
             if (isParameters == true)
             {
                 if ((jsonParameters.ExistingPassword != "") && (jsonParameters.ExistingPassword != null))
-                { password = jsonParameters.ExinstingPassword; }
+                { password = jsonParameters.ExistingPassword; 
+                }
                 else if (defaultParameters.Existingpassword != null) { password = defaultParameters.Existingpassword; }
             }
             else { password = defaultParameters.Existingpassword; }
+           
             // Only phonenumber for an existing account is used for these tests
             if (isParameters == true)
             {
@@ -85,7 +87,7 @@ namespace SpecFlowProject1.StepDefinitions
             if (isParameters == true)
             {
                 if ((jsonParameters.ReservedBookID != "") && (jsonParameters.ReservedBookID != null))
-                { bookID = jsonParameters.BookID; }
+                { bookID = jsonParameters.ReservedBookID; }
                 else if (defaultParameters.ReservedBookID != null) { bookID = defaultParameters.ReservedBookID; }
             }
             else { bookID = defaultParameters.ReservedBookID; }

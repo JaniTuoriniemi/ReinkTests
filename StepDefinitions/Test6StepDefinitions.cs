@@ -58,7 +58,7 @@ namespace SpecFlowProject1.StepDefinitions
             if (isParameters == true)
             {
                 if ((jsonParameters.ExistingPassword != "") && (jsonParameters.ExistingPassword != null))
-                { password = jsonParameters.ExinstingPassword; }
+                { password = jsonParameters.ExistingPassword; }
                 else if (defaultParameters.Existingpassword != null) { password = defaultParameters.Existingpassword; }
             }
             else { password = defaultParameters.Existingpassword; }
@@ -82,7 +82,7 @@ namespace SpecFlowProject1.StepDefinitions
             if (isParameters == true)
             {
                 if ((jsonParameters.ReservedBookID != "") && (jsonParameters.ReservedBookID != null))
-                { bookID = jsonParameters.BookID; }
+                { bookID = jsonParameters.ReservedBookID; }
                 else if (defaultParameters.ReservedBookID != null) { bookID = defaultParameters.ReservedBookID; }
             }
             else { bookID = defaultParameters.ReservedBookID; }

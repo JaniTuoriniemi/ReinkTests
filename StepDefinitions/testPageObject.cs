@@ -133,6 +133,8 @@ namespace CalculatorSelenium.Specs.PageObjects
 
         private IWebElement SwishTestTicket => _webDriver.FindElement(By.Id("test-ticket"));
 
+        private IWebElement HiddenForm => _webDriver.FindElement(By.Id("payment-end-test-form"));
+
         //Create account
 
         private IWebElement Ingetkonto => _webDriver.FindElement(By.LinkText("Inget konto? Registrera dig"));
@@ -437,6 +439,19 @@ namespace CalculatorSelenium.Specs.PageObjects
             ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].value=arguments[1];", SwishTestTicket, testticket);
 
         }
+
+        public void StateSwishTestCode()
+
+        {
+
+            ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].value=arguments[1];", SwishTestCode, "free");
+
+        }
+        public void SubmitHiddenForm()
+        {
+            HiddenForm.Submit();
+        }
+
 
         public string GetSource()
 
