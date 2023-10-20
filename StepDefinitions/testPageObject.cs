@@ -44,7 +44,7 @@ namespace CalculatorSelenium.Specs.PageObjects
 
         string reink_code = $"{reink_start}/book/register-qr?QrCode=eebe74a8-56ce-4e10-a8a2-6e4f6ef6c8cd";
         string bok_upptagen = $"{reink_start}/book/unavailave-book?Id=";
-        
+
         string logga_in_code = $"{reink_start}/auth/login?ReturnUrl=%2Fbook%2Fcode-access%3Fcode%3Deebe74a8-56ce-4e10-a8a2-6e4f6ef6c8cd";
 
         string registrera_bok = $"{reink_start}/book/register-qr?QrCode=eebe74a8-56ce-4e10-a8a2-6e4f6ef6c8cd";
@@ -62,6 +62,7 @@ namespace CalculatorSelenium.Specs.PageObjects
         string är_klar_address = $"{reink_start}/book/leave-book-on-map?code=eebe74a8-56ce-4e10-a8a2-6e4f6ef6c8cd";
 
         string betala_swish_är_klar_address = $"{reink_start}/account/payment-swish?BookId=6c6d0395-c667-4bf9-b5f5-0d13ca706b27&Status=started%2BleaveBookOnMap&InstructionUUID=0A14B4EB2C554A62BC57A95D72A9FDC5";
+        string conversation=$"{reink_start}/account/conversation/4fa7984d-4e5b-4428-9edf-0a9f7588760d";
 
         //The Selenium web driver to automate the browser
 
@@ -159,19 +160,25 @@ namespace CalculatorSelenium.Specs.PageObjects
 
         // private IWebElement SavePassword => _webDriver.FindElement(By.Id("SubmitBtn"));
 
-        private IWebElement MittKonto => _webDriver.FindElement(By.LinkText("/account/myprofile"));
-       // private IWebElement TaBortKonto => _webDriver.FindElement(By.LinkText("/account/delete-account"));
+        private IWebElement MittKonto => _webDriver.FindElement(By.LinkText("account/myprofile"));
+        // private IWebElement TaBortKonto => _webDriver.FindElement(By.LinkText("/account/delete-account"));
 
         private IWebElement BekräftaTaBortKonto => _webDriver.FindElement(By.XPath("//*[text()='Ta bort']"));
         private IWebElement LoginElement => _webDriver.FindElement(By.ClassName("logg"));
         private IWebElement LogoutElement => _webDriver.FindElement(By.XPath("//*[text()='Logga Ut']"));
+
+        private IWebElement Meddelanden => _webDriver.FindElement(By.XPath("//*[text()='Meddelanden']"));
+        private IWebElement MessageThread => _webDriver.FindElement(By.LinkText("/account/conversation/4fa7984d-4e5b-4428-9edf-0a9f7588760d"));
+        private IWebElement SubmitMessage => _webDriver.FindElement(By.Id("button-addon2"));
+        private IWebElement MessageBox => _webDriver.FindElement(By.ClassName("form-control"));
+        private IWebElement AccountLogin => _webDriver.FindElement(By.ClassName("logg"));
         public string GetValueSwishTestAmount()
 
         {
             string testAmount = SwishTestAmount.GetAttribute("value");
             return testAmount;
         }
-        
+
         public string GetValueSwishTestStatus()
 
         {
@@ -230,8 +237,22 @@ namespace CalculatorSelenium.Specs.PageObjects
             }
 
             return result;
-
         }
+
+        public void PostMessage(string message)
+        {
+            MessageBox.SendKeys(message);
+            SubmitMessage.Click();
+        }
+        public void ClickAccountLogin()
+        {
+            AccountLogin.Click();
+        }
+        public void ClickMessageThread()
+        { MessageThread.Click(); }
+
+        public void ClickMeddelanden()
+        { Meddelanden.Click(); }
         public void ClickLogoutElement()
         { LogoutElement.Click(); }
         public void ClickBekräftaTaBortKonto()
@@ -274,14 +295,14 @@ namespace CalculatorSelenium.Specs.PageObjects
         }
         public bool ExistsLogin()
 
-        {try
+        { try
             {
                 _webDriver.FindElement(By.ClassName("logg"));
                 return true;
 
             }
             catch { return false; }
-          
+
         }
 
 
@@ -297,14 +318,14 @@ namespace CalculatorSelenium.Specs.PageObjects
 
         // }
         public void ClickSavepassword()
-        { 
-        VerifieraButton1.Click();
+        {
+            VerifieraButton1.Click();
         }
         public void ClickIngetKonto()
         {
-           Ingetkonto.Click();
+            Ingetkonto.Click();
         }
-        public void ClickCheckbox() 
+        public void ClickCheckbox()
         { CheckBox.Click(); }
         public void ClickVerifiera1()
         {
@@ -464,7 +485,28 @@ namespace CalculatorSelenium.Specs.PageObjects
             return source;
 
         }
+        public bool MessageExists(string message)
+        { bool result = true;
+            string searchstring = "//*[text()='"+message+"']";
+            try
+            {
+                _webDriver.FindElement(By.XPath(searchstring));
+              }
+            catch (NoSuchElementException){  result = false; }
+            return result;
+        }
 
+
+        public string RandomMessage()
+        {
+            string message = "";
+            Random random = new Random();
+            for (int i = 0; i < 5; i++)
+            {
+                message = message + random.Next(1, 10).ToString();
+            }
+            return message;
+        }
         public void StatePhoneNumber(string number)
 
         {
@@ -689,7 +731,10 @@ namespace CalculatorSelenium.Specs.PageObjects
             return null;
 
         }
-
+        public void GotoPage11()
+        { _webDriver.Url = min_profil; }
+        public void GotoPage12()
+        { _webDriver.Url = conversation; }
         public void EnsureCalculatorIsOpenAndReset()
 
         {
