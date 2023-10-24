@@ -30,7 +30,7 @@ namespace Specflowtest.StepDefinitions
         {
             string phone = "";
             Random random = new Random();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 7; i++)
             {
              phone=phone+random.Next(1, 10).ToString();
             }
@@ -38,7 +38,7 @@ namespace Specflowtest.StepDefinitions
         }
 
         public DefaultParameters()
-        { Browsertype = "mozilla";
+        { Browsertype = "chrome";
           Existingpassword="Koopa11Kiipa";
           Existingphone="730622401";
           NewPassword="NewPassword111";
